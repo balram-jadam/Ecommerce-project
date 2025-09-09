@@ -1,0 +1,113 @@
+ {% extends 'master.html' %} 
+
+ 
+ {% block body %}
+    
+<section id="cart_items" class="py-5">
+  <div class="container">
+    <!-- Cart Card -->
+    <div class="card shadow-lg border-0 rounded-4">
+      <div class="card-body p-4">
+        <h3 class="mb-4 fw-bold text-warning">
+          <i class="fa fa-shopping-cart me-2"></i>Your Shopping Cart
+        </h3>
+
+        <!-- Table -->
+        <div class="table-responsive">
+          <table class="table align-middle text-center table-hover border">
+            <thead class="bg-gradient bg-dark text-white">
+              <tr>
+                <th>Item</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in cart_items %}
+              <tr class="cart-row">
+                
+                <td>
+                  {% if item.product.image %}
+                  <a href="{% url 'product_detail' item.product.id %}">
+                    <img
+                    src="{{ item.product.image.url }}"
+                    class="img-fluid rounded shadow-sm"
+                    style="width: 80px; height: 80px; object-fit: cover"
+                    alt="{{ item.product.name }}"
+                  />
+                  </a>
+                  {% endif %}
+                </td>
+
+                
+                <td class="text-start">
+                  <h6 class="fw-bold mb-1">{{ item.product.name }}</h6>
+                  <small class="text-muted">ID: {{ item.product.id }}</small>
+                </td>
+
+                <!-- price -->
+                <td class="fw-bold text-success">₹{{ item.product.price }}</td>
+
+                <!-- quantity -->
+                <td>
+                  <div class="d-flex justify-content-center align-items-center gap-2">
+                    <a href="{% url 'increase_quantity' item.product.id %}" class="btn btn-sm btn-outline-success rounded-circle " max="5">+</a>
+                    <input
+                      type="text"
+                      class="form-control text-center border-primary fw-bold"
+                      style="width: 60px"
+                      value="{{ item.quantity }}"
+                      readonly
+                      max="7"
+                    />
+                    <a href="{% url 'decrease_quantity' item.product.id %}" class="btn btn-sm btn-outline-danger rounded-circle ">-</a>
+                  </div>
+                </td>
+
+                <!-- Total -->
+                <td class="fw-bold text-danger">
+                  ₹{{ item.total }}
+                </td>
+
+                <!-- Delete -->
+                <td>
+                  <a href="{% url 'remove_from_cart' item.id %}" class="btn btn-sm btn-outline-danger">
+                    <i class="fa fa-trash"></i>
+                  </a>
+                </td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="6" class="text-muted py-4">Your cart is empty.</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Totals Section -->
+        <div class="row mt-4 bg-light rounded-3 shadow-sm p-3 align-items-center">
+          <div class="col-md-6">
+            <a href="{% url 'index' %}" class="btn btn-outline-secondary">
+              <i class="fa fa-arrow-left"></i> Continue Shopping
+            </a>
+          </div>
+          <div class="col-md-6 text-end">
+            <h5 class="text-muted">Subtotal: <span class="text-success">₹{{ subtotal }}</span></h5>
+            <h5 class="text-muted">Tax: <span class="text-warning">₹20</span></h5>
+            <h4 class="fw-bold">Total: <span class="text-danger">₹{{ grand_total }}</span></h4>
+            <a href="#" class="btn btn-success btn-lg mt-2 shadow">
+              Proceed to Checkout <i class="fa fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+ {% endblock body %}
+    

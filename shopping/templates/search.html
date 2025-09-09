@@ -1,0 +1,43 @@
+{% extends 'master.html' %}
+
+{% block body %}
+
+<section class="product-section">
+  <div class="container my-4">
+    <!-- Search Form -->
+    <form method="GET" action="{% url 'search' %}" class="d-flex justify-content-center mb-4">
+      <input type="text" name="q" value="{{ query }}" placeholder="Search products..." 
+             class="form-control me-2 shadow-sm" style="max-width:400px;">
+      <button type="submit" class="btn btn-primary px-4">Search</button>
+    </form>
+
+    <hr>
+
+    {% if products %}
+      <div class="row g-3">
+        {% for product in products %}
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="product-card">
+              {% if product.image %}
+                <a href="{% url 'product_detail' product.id %}">
+                  <img src="{{ product.image.url }}" class="product-img" alt="{{ product.name }}">
+                </a>
+              {% endif %}
+
+              <div class="product-info">
+                <h5>{{ product.name }}</h5>
+                <p>₹{{ product.price }}</p>
+              </div>
+
+              <a href="{% url 'add_to_cart' product.id %}" class="btn-cart">Add to Cart</a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+{% endblock body %}
+
+

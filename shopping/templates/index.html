@@ -1,0 +1,51 @@
+{% extends 'master.html' %}
+
+{% block header %}
+    <h1 class="h3 mb-0 text-center  mt-4 ">Welcome To <span class="text-warning">Shopping Mart</span></h1>
+{% endblock header %}
+
+{% block body %}
+
+<section class="product-section">
+{% for cat in categories %}
+    {% with products=cat.product_set.all %}
+      {% if products %}
+        <h2 class="category-title">{{ cat.name }}</h2>
+
+        {% for subcat in cat.subcategory_set.all %}
+          {% if subcat.product_set.all %}
+            <h4 class="subcategory-title">{{ subcat.name }}</h4>
+
+            <div class="product-wrapper">
+                <div class="product-row" id="scroll-{{ subcat.id }}">
+                  {% for product in subcat.product_set.all %}
+                    <div class="product-card">
+                      {% if product.image %}
+                        <a href="{% url 'product_detail' product.id %}">
+                          <img src="{{ product.image.url }}" class="product-img" alt="{{ product.name }}">
+                        </a>
+
+                      {% endif %}
+
+                      <div class="product-info">
+                        <h5>{{ product.name }}</h5>
+                        <p>₹{{ product.price }}</p>
+                      </div>
+
+                      <a href="{% url 'add_to_cart' product.id  %}" class="btn-cart">Add to Cart</a>
+                    </div>
+                  {% endfor %}
+                </div>
+
+                <!-- Arrows -->
+                <button onclick="scrollRow('{{ subcat.id }}', -1)" class="scroll-btn left-btn">&#10094;</button>
+                <button onclick="scrollRow('{{ subcat.id }}', 1)" class="scroll-btn right-btn">&#10095;</button>
+            </div>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+{% endfor %}
+</section>
+
+{% endblock body %}

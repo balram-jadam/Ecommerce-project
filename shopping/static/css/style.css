@@ -1,0 +1,140 @@
+/* Section padding */
+.product-section {
+  margin: 30px 0;
+}
+
+/* Category & Subcategory headings */
+.category-title {
+  margin-left: 40px;
+  font-size: 24px;
+  font-weight: 00;
+  color: #000000;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  
+}
+
+.subcategory-title {
+  margin-left: 40px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #444;
+}
+
+/* Wrapper for row + arrows */
+.product-wrapper {
+  position: relative;
+  overflow: hidden;
+  padding: 20px 40px;
+}
+
+/* Horizontal scroll row */
+.product-row {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+}
+
+/* Hide scrollbar */
+.product-row::-webkit-scrollbar {
+  display: none;
+}
+.product-row {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;     
+}
+
+/* Product Card */
+.product-card {
+  flex: 0 0 220px;
+  /* border: 1px solid #ddd; */
+  padding: 5px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 380px;
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+}
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Product Image */
+.product-img {
+  width: 210px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 0 auto;
+}
+
+/* Product info */
+.product-info h5 {
+  margin: 10px 0 5px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+.product-info p {
+  margin: 0;
+  font-size: 15px;
+  font-weight: bold;
+  color: #a62323;
+}
+
+/* Add to Cart button */
+.btn-cart {
+  background: #df493e;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+/* .btn-cart:hover {
+  background: #218838;
+} */
+
+/* Scroll Buttons */
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  /* background: white; */
+  color: #000;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  /* border-radius: 50%; */
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+.left-btn {
+  left: 5px;
+}
+.right-btn {
+  right: 5px;
+}
+
+
+
+.welcome-text {
+    font-family: 'Poppins', sans-serif;  /* modern font */
+    font-size: 2.5rem; /* thoda bada */
+    font-weight: 600;
+  }
+
+.welcome-text span {
+    font-family: 'Lobster', cursive;  /* stylish cursive font */
+    color: orange;
+    font-size: 2.7rem;
+  }
+
+
+
