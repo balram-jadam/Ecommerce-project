@@ -3,6 +3,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# STATIC_DIR = BASE_DIR /'static'
 
 
 
@@ -12,7 +13,7 @@ SECRET_KEY = 'django-insecure-il=&y*rnq*i54&0k%cw!0bhy1p+t1ilj@!6or6%3sjlc48!zrq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -42,7 +43,7 @@ ROOT_URLCONF = 'ecommerce.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -109,15 +110,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 
 # Define static directory path
-STATIC_DIR = BASE_DIR / "static"
+
 
 # Tell Django where to look for static files (apart from app-level static folders)
-STATICFILES_DIRS = [
-    STATIC_DIR,
-]
+# STATICFILES_DIRS = [STATIC_DIR]
 
 
 MEDIA_URL = '/media/'
@@ -127,3 +126,19 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+STATIC_URL = '/static/'
+STATIC_DIR = BASE_DIR / "static"          # optional, keep if you plan to store project-level static
+STATICFILES_DIRS = [STATIC_DIR]           # keep or set to [] if you don't have a project 'static' folder
+
+# Add STATIC_ROOT so collectstatic targets a folder
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# Media
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / "media"
+
+# Production settings
+ALLOWED_HOSTS = ['balramjadam.pythonanywhere.com']   # add your pythonanywhere host
+DEBUG = False   # for production
