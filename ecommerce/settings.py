@@ -111,12 +111,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Define static directory path
+STATIC_DIR = BASE_DIR / "static"
+
+# Tell Django where to look for static files (apart from app-level static folders)
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    STATIC_DIR,
 ]
-
-# STATIC_URL = 'static/'
-
 
 
 MEDIA_URL = '/media/'
